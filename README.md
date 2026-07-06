@@ -21,7 +21,7 @@ Since this uses a non-project batch build, you do not need to open the Vivado GU
 2. Navigate to the root of this project repository.
 3. Run the build script:
    ```bash
-   vivado -mode batch -source vivado/build.tcl
+   C:\AMDDesignTools\2025.2\Vivado\bin\vivado.bat -mode batch -source vivado/build.tcl
    ```
 4. Once the build finishes, the output bitstream `pynq_test_pattern.bit` will be available in the root directory.
 5. Timing and utilization reports will be saved in the `docs/` directory.

@@ -14,7 +14,8 @@ module serializer #(
     // configured in Master/Slave mode since a single OSERDESE2 in DDR mode
     // supports up to 8:1 (or 14:1 in cascaded mode, using DATA_WIDTH = 10).
 
-    logic shift_out_to_in;
+    logic shift_out1;
+    logic shift_out2;
 
     OSERDESE2 #(
         .DATA_RATE_OQ("DDR"),
@@ -24,12 +25,13 @@ module serializer #(
         .INIT_TQ(1'b0),
         .SRVAL_OQ(1'b0),
         .SRVAL_TQ(1'b0),
-        .TRISTATE_WIDTH(1)
+        .TRISTATE_WIDTH(1),
+        .SERDES_MODE("MASTER")
     ) master (
-        .O(data_o),
-        .OQ(),          // Unused, as we use O
-        .T(1'b0),       // Tristate disabled
-        .TQE(),
+        .OQ(data_o),
+        .TQ(),
+        .SHIFTOUT1(),
+        .SHIFTOUT2(),
         .CLK(clk),
         .CLKDIV(clk_div),
         .D1(data_i[0]),
@@ -39,10 +41,9 @@ module serializer #(
         .D5(data_i[4]),
         .D6(1'b0),
         .OCE(1'b1),
-        .OFB(),
         .RST(rst),
-        .SHIFTIN(shift_out_to_in),
-        .SHIFTOUT(),
+        .SHIFTIN1(shift_out1),
+        .SHIFTIN2(shift_out2),
         .T1(1'b0),
         .T2(1'b0),
         .T3(1'b0),
@@ -58,12 +59,13 @@ module serializer #(
         .INIT_TQ(1'b0),
         .SRVAL_OQ(1'b0),
         .SRVAL_TQ(1'b0),
-        .TRISTATE_WIDTH(1)
+        .TRISTATE_WIDTH(1),
+        .SERDES_MODE("SLAVE")
     ) slave (
-        .O(),
         .OQ(),
-        .T(1'b0),
-        .TQE(),
+        .TQ(),
+        .SHIFTOUT1(shift_out1),
+        .SHIFTOUT2(shift_out2),
         .CLK(clk),
         .CLKDIV(clk_div),
         .D1(data_i[5]),
@@ -73,10 +75,9 @@ module serializer #(
         .D5(data_i[9]),
         .D6(1'b0),
         .OCE(1'b1),
-        .OFB(),
         .RST(rst),
-        .SHIFTIN(1'b0),
-        .SHIFTOUT(shift_out_to_in),
+        .SHIFTIN1(1'b0),
+        .SHIFTIN2(1'b0),
         .T1(1'b0),
         .T2(1'b0),
         .T3(1'b0),
