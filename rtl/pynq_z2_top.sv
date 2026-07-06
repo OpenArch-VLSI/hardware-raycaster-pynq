@@ -69,8 +69,6 @@ module pynq_z2_top (
         .DO                  (),
         .DRDY                (),
         .DWE                 (1'b0),
-        .CDDCDONE            (),
-        .CDDCREQ             (1'b0),
         .PSCLK               (1'b0),
         .PSEN                (1'b0),
         .PSINCDEC            (1'b0),

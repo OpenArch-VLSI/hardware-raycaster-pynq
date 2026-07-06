@@ -15,9 +15,8 @@ This is a port of the [hardware_raycast](https://github.com/m-byte918/hardware_r
    Run the Vivado build script to generate the bitstream:
    ```bash
    cd vivado
-   vivado -mode batch -source build.tcl
+   C:\AMDDesignTools\2025.2\Vivado\bin\vivado.bat -mode batch -source build.tcl
    ```
-   *(Note: The automated environment did not have Vivado installed on the PATH to execute this step).*
 
 2. **Program the Board:**
    - Power on the PYNQ-Z2 board.
