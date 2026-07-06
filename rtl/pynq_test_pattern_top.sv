@@ -10,7 +10,7 @@ module pynq_test_pattern_top (
     output var logic       tmds_clk_p,
     output var logic       tmds_clk_n,
 
-    output var logic       hdmi_tx_hpdn // Drive high to enable HDMI / satisfy connector requirement
+    input  var logic       hdmi_out_hpd_i  // monitor asserts this; we only read it, never drive it
 );
 
     // Map buttons to the expected generic keys interface.
@@ -20,8 +20,7 @@ module pynq_test_pattern_top (
     assign keys = {sws_2bits_tri_i, btns_4bits_tri_i};
 
     // HDMI Hot Plug Detect (Active low/level shifter OE)
-    // Driving it to 1 to enable.
-    assign hdmi_tx_hpdn = 1'b1;
+    // We only read this, never drive it.
 
     // Clocking
     logic clk_fb;
@@ -69,7 +68,7 @@ module pynq_test_pattern_top (
 
     // Test pattern generator (Color Bars)
     logic [9:0] pixel_x;
-    logic [9:0] pixel_y;
+    logic [8:0] pixel_y;
     logic       in_range;
 
     logic [7:0] red_test;

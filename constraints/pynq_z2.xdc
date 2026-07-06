@@ -13,7 +13,7 @@ set_property -dict {PACKAGE_PIN L20 IOSTANDARD LVCMOS33} [get_ports {btns_4bits_
 set_property -dict {PACKAGE_PIN L19 IOSTANDARD LVCMOS33} [get_ports {btns_4bits_tri_i[3]}]
 
 ## HDMI TX HPD
-set_property -dict {PACKAGE_PIN R19 IOSTANDARD LVCMOS33} [get_ports hdmi_tx_hpdn]
+set_property -dict {PACKAGE_PIN R19 IOSTANDARD LVCMOS33} [get_ports hdmi_out_hpd_i]
 
 ## HDMI TX TMDS
 set_property -dict {PACKAGE_PIN L17 IOSTANDARD TMDS_33} [get_ports tmds_clk_n]
