@@ -7,12 +7,11 @@ module ds_buf (
 );
 
     OBUFDS #(
-        .IOSTANDARD("TMDS_33"), // TMDS differential standard
-        .SLEW("FAST")
-    ) obufds_inst (
-        .O(out),
-        .OB(out_n),
-        .I(in)
+        .IOSTANDARD("TMDS_33")
+    ) tmds_buf (
+        .I  (in   ),
+        .O  (out  ),
+        .OB (out_n)
     );
 
 endmodule

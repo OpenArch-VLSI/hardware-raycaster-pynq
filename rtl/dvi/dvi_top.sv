@@ -111,31 +111,31 @@ tmds_encoder red_encoder (
 serializer #(
     .W_DATA (10)
 ) blue_serializer (
-    .clk     (serial_clk ),
-    .clk_div (pixel_clk  ),
-    .rst     (rst        ),
-    .data_i  (blue_tmds  ),
-    .data_o  (blue_serial)
+    .clk       (serial_clk ),
+    .pixel_clk (pixel_clk  ),
+    .rst       (rst        ),
+    .data_i    (blue_tmds  ),
+    .data_o    (blue_serial)
 );
 
 serializer #(
     .W_DATA (10)
 ) green_serializer (
-    .clk     (serial_clk  ),
-    .clk_div (pixel_clk   ),
-    .rst     (rst         ),
-    .data_i  (green_tmds  ),
-    .data_o  (green_serial)
+    .clk       (serial_clk  ),
+    .pixel_clk (pixel_clk   ),
+    .rst       (rst         ),
+    .data_i    (green_tmds  ),
+    .data_o    (green_serial)
 );
 
 serializer #(
     .W_DATA (10)
 ) red_serializer (
-    .clk     (serial_clk),
-    .clk_div (pixel_clk ),
-    .rst     (rst       ),
-    .data_i  (red_tmds  ),
-    .data_o  (red_serial)
+    .clk       (serial_clk),
+    .pixel_clk (pixel_clk ),
+    .rst       (rst       ),
+    .data_i    (red_tmds  ),
+    .data_o    (red_serial)
 );
 
 // ------------------------------------------------------------------------
