@@ -1,0 +1,9 @@
+# 01 Architecture Overview
+
+## What the design does
+
+Hardware raycaster in SystemVerilog, Wolfenstein-3D inspired for the Wolfenstein-3D algorithm. 640 rays/frame through 2D map grid, textured walls at 640x480 24-bit color over DVI (TMDS). Player position and camera direction updated via 6 key inputs between frames. Double-buffered frame storage prevents screen tearing. Design is FSM-based with aggressive resource sharing: iterative, not pipelined, to minimize LUT/multiplier usage.
+
+Target platform: Gowin Tang Primer 20K (GW1N-1 family), synthesized with yosys-slang + nextpnr + Apicula.
+
+---

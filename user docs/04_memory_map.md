@@ -1,0 +1,11 @@
+# Memory Map
+
+## Arrays Inferring ROM/RAM/BRAM
+
+| Memory Array | Module & File | Address Width | Data Width | Depth | Storage Purpose | Initialization | Port Timing |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| `map` | `raycast_top` (`rtl/raycast_top.sv:55`) | 10 bits (`W_MAP_ADDR`) | 3 bits (`W_NUM_TEX`) | 1024 (`MAP_SIZE`) | 2D map geometry. Each element stores the texture ID of a wall block (0 = empty). | `$readmemh("memfiles/map.mem", map)` (`raycast_top.sv:95`) | Single-port, synchronous read (`raycast_top.sv:104`) |
+| `frame_buffer` | `render` (`rtl/render.sv:91`) | 11 bits (`W_BUF_ADDR`) | 23 bits (`W_BUF_DATA`) | 1280 (`BUF_DEPTH` = `FRAME_WIDTH * 2`) | Double-buffered column data. Stores intermediate ray hit properties (texture, shade, hit X, texture step, scaled height) calculated by `column_calc` for the current frame, preventing pipeline stalls. | None | Dual-port (one read, one write), synchronous, read-first behavior (`render.sv:220`) |
+| `textures` | `render` (`rtl/render.sv:181`) | 14 bits (`W_TEXTURES_ADDR`) | 4 bits (`W_PX_CODE`) | 7168 (`TEXTURES_SIZE` = 7 * 32 * 32) | Stores 7 textures, each 32x32. Values are compressed color indices, not raw RGB, to save memory. | `$readmemh("memfiles/textures.mem", textures)` (`render.sv:202`) | Single-port, synchronous read (`render.sv:403`) |
+| `recode_lut` | `render` (`rtl/render.sv:182`) | 7 bits (`W_RECODE_LUT_ADDR`) | 24 bits (`W_PX` = RGB888) | 105 (`RECODE_LUT_SIZE` = 7 * 15) | Color lookup table. Maps the 4-bit compressed `px_code` back into a 24-bit RGB pixel color for a specific texture ID. | `$readmemh("memfiles/recode_lut.mem", recode_lut)` (`render.sv:203`) | Single-port, synchronous read (`render.sv:423`) |
+| `mem` | `delay` (`rtl/dvi/delay.sv:30`) | 3 bits (`W_PTR`) | 3 bits (`WIDTH`) | 6 (`N_CYCLES` = `DEL_CYCLES`) | Delay line for VSYNC/HSYNC signals to keep them synchronized with the pixel data pipeline. | None | Dual-port (write `ptr`, read `ptr`), synchronous write, asynchronous read assignment (`delay.sv:39`, `delay.sv:42`). (*Note: Inferencing varies by synth tool; small depths typically map to distributed RAM or shift registers like SRL16*). |

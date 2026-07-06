@@ -1,0 +1,17 @@
+## Top-level block diagram (Mermaid)
+
+```mermaid
+graph TD
+    OSC["27MHz osc"] --> PLL["rPLL 27->252MHz"]
+    PLL -->|"serial_clk 252MHz"|> DVI["dvi_top"]
+    PLL -->|"/2 then /5"|> PX["px_clk 25.2MHz"]
+    KEYS["6 keys"] --> PT["primer20k_top"]
+    PT --> RT["raycast_top"]
+    DVI --> RENDER["render"]
+    DVI --> CTRL["controls"]
+    RENDER --> MAP["map ROM 32x32"]
+    CTRL --> MAP
+    RENDER -->|"r,g,b 8-bit"|> DVI
+    DVI --> TMDS["TMDS diff pairs"]
+```
+
