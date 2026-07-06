@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="impl_1" LaunchPart="xc7z020clg400-1" LaunchTime="1783333291">
+  <File Type="REPORTS-TCL" Name="pynq_test_pattern_top_reports.tcl"/>
+  <File Type="ROUTE-PWR-SUM" Name="pynq_test_pattern_top_power_summary_routed.pb"/>
+  <File Type="BITSTR-MMI" Name="pynq_test_pattern_top.mmi"/>
+  <File Type="OPT-DRC" Name="pynq_test_pattern_top_drc_opted.rpt"/>
+  <File Type="BG-DRC" Name="pynq_test_pattern_top.drc"/>
+  <File Type="ROUTE-STATUS-PB" Name="pynq_test_pattern_top_route_status.pb"/>
+  <File Type="BG-BGN" Name="pynq_test_pattern_top.bgn"/>
+  <File Type="PLACE-UTIL" Name="pynq_test_pattern_top_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="pynq_test_pattern_top_utilization_placed.pb"/>
+  <File Type="PLACE-IO" Name="pynq_test_pattern_top_io_placed.rpt"/>
+  <File Type="BG-BIN" Name="pynq_test_pattern_top.bin"/>
+  <File Type="PLACE-CTRL" Name="pynq_test_pattern_top_control_sets_placed.rpt"/>
+  <File Type="ROUTE-PWR-RPX" Name="pynq_test_pattern_top_power_routed.rpx"/>
+  <File Type="BITSTR-MSK" Name="pynq_test_pattern_top.msk"/>
+  <File Type="BITSTR-RBT" Name="pynq_test_pattern_top.rbt"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="pynq_test_pattern_top_timing_summary_routed.rpt"/>
+  <File Type="ROUTE-TIMING-RPX" Name="pynq_test_pattern_top_timing_summary_routed.rpx"/>
+  <File Type="ROUTE-STATUS" Name="pynq_test_pattern_top_route_status.rpt"/>
+  <File Type="PA-TCL" Name="pynq_test_pattern_top.tcl"/>
+  <File Type="ROUTE-PWR" Name="pynq_test_pattern_top_power_routed.rpt"/>
+  <File Type="ROUTE-DRC" Name="pynq_test_pattern_top_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-RPX" Name="pynq_test_pattern_top_drc_routed.rpx"/>
+  <File Type="ROUTE-DRC-PB" Name="pynq_test_pattern_top_drc_routed.pb"/>
+  <File Type="BITSTR-SYSDEF" Name="pynq_test_pattern_top.sysdef"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="pynq_test_pattern_top_methodology_drc_routed.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="pynq_test_pattern_top_methodology_drc_routed.rpx"/>
+  <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
+  <File Type="BITSTR-LTX" Name="pynq_test_pattern_top.ltx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="pynq_test_pattern_top_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-SIMILARITY" Name="pynq_test_pattern_top_incremental_reuse_routed.rpt"/>
+  <File Type="RDI-RDI" Name="pynq_test_pattern_top.vdi"/>
+  <File Type="ROUTE-CLK" Name="pynq_test_pattern_top_clock_utilization_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW" Name="pynq_test_pattern_top_bus_skew_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW-RPX" Name="pynq_test_pattern_top_bus_skew_routed.rpx"/>
+  <File Type="ROUTE-BUS-SKEW-PB" Name="pynq_test_pattern_top_bus_skew_routed.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="pynq_test_pattern_top_timing_summary_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="pynq_test_pattern_top_timing_summary_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="pynq_test_pattern_top_timing_summary_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="pynq_test_pattern_top_bus_skew_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="pynq_test_pattern_top_bus_skew_postroute_physopted.rpx"/>
+  <File Type="BG-BIT" Name="pynq_test_pattern_top.bit"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="pynq_test_pattern_top_bus_skew_postroute_physopted.pb"/>
+  <File Type="BITSTR-NKY" Name="pynq_test_pattern_top.nky"/>
+  <File Type="BITSTR-BMM" Name="pynq_test_pattern_top_bd.bmm"/>
+  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <File Type="OPT-HWDEF" Name="pynq_test_pattern_top.hwdef"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="pynq_test_pattern_top_incremental_reuse_pre_placed.rpt"/>
+  <File Type="ROUTE-DCP" Name="pynq_test_pattern_top_routed.dcp"/>
+  <File Type="ROUTE-ERROR-DCP" Name="pynq_test_pattern_top_routed_error.dcp"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="pynq_test_pattern_top_routed_bb.dcp"/>
+  <File Type="ROUTE-TIMING-PB" Name="pynq_test_pattern_top_timing_summary_routed.pb"/>
+  <File Type="OPT-DCP" Name="pynq_test_pattern_top_opt.dcp"/>
+  <File Type="PLACE-DCP" Name="pynq_test_pattern_top_placed.dcp"/>
+  <File Type="PWROPT-DCP" Name="pynq_test_pattern_top_pwropt.dcp"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="pynq_test_pattern_top_postplace_pwropt.dcp"/>
+  <File Type="PHYSOPT-DCP" Name="pynq_test_pattern_top_physopt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="pynq_test_pattern_top_postroute_physopt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="pynq_test_pattern_top_postroute_physopt_bb.dcp"/>
+  <File Type="PDI-FILE" Name="pynq_test_pattern_top.pdi"/>
+  <File Type="BOOT-PDI-FILE" Name="pynq_test_pattern_top_boot.pdi"/>
+  <File Type="PL-PDI-FILE" Name="pynq_test_pattern_top_pld.pdi"/>
+  <File Type="RCFI_FILE" Name="pynq_test_pattern_top.rcfi"/>
+  <File Type="CFI_FILE" Name="pynq_test_pattern_top.cfi"/>
+  <File Type="RNPI_FILE" Name="pynq_test_pattern_top.rnpi"/>
+  <File Type="NPI_FILE" Name="pynq_test_pattern_top.npi"/>
+  <File Type="RBD_FILE" Name="pynq_test_pattern_top.rbd"/>
+  <File Type="ROUTE-RQS" Name="pynq_test_pattern_top_routed.rqs"/>
+  <File Type="POSTROUTE-PHYSOPT-RQS" Name="pynq_test_pattern_top_postroute_physopted.rqs"/>
+  <File Type="ROUTE-RQS-RPT" Name="route_report_qor_suggestions_0.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-RQS-RPT" Name="postroute_physopt_report_qor_suggestions_0.rpt"/>
+  <File Type="MMI-FILE" Name="pynq_test_pattern_top.mmi"/>
+  <File Type="BIF-FILE" Name="pynq_test_pattern_top.bif"/>
+  <File Type="BOOT-BIF-FILE" Name="pynq_test_pattern_top_boot.bif"/>
+  <File Type="PL-BIF-FILE" Name="pynq_test_pattern_top_pld.bif"/>
+  <File Type="LTX-FILE" Name="pynq_test_pattern_top.ltx"/>
+  <File Type="BOOT-LTX-FILE" Name="pynq_test_pattern_top_boot.ltx"/>
+  <File Type="PL-LTX-FILE" Name="pynq_test_pattern_top_pld.ltx"/>
+  <File Type="RCDO-FILE" Name="pynq_test_pattern_top.rcdo"/>
+  <File Type="MARKER-RCDO-FILE" Name="pynq_test_pattern_top_markers.rcdo"/>
+  <File Type="PL-RCDO-FILE" Name="pynq_test_pattern_top_pld.rcdo"/>
+  <File Type="MARKER-RNPI-FILE" Name="pynq_test_pattern_top_markers.rnpi"/>
+  <File Type="BOOT_RNPI_FILE" Name="pynq_test_pattern_top_boot.rnpi"/>
+  <File Type="PL_RNPI_FILE" Name="pynq_test_pattern_top_pld.rnpi"/>
+  <File Type="BOOT_MARKER_RNPI_FILE" Name="pynq_test_pattern_top_boot_markers.rnpi"/>
+  <File Type="PL_MARKER_RNPI_FILE" Name="pynq_test_pattern_top_pld_markers.rnpi"/>
+  <File Type="PL_MASK_RNPI_FILE" Name="pynq_test_pattern_top_pld_mask.rnpi"/>
+  <File Type="PL_SHUTDOWN_RNPI_FILE" Name="pynq_test_pattern_top_pld_shutdown.rnpi"/>
+  <File Type="PL_UNMASK_RNPI_FILE" Name="pynq_test_pattern_top_pld_unmask.rnpi"/>
+  <File Type="PL-CLEAR-RCDO-FILE" Name="pynq_test_pattern_top_pld_clear.rcdo"/>
+  <File Type="PL_MARKER_RCDO_FILE" Name="pynq_test_pattern_top_pld_markers.rcdo"/>
+  <File Type="PL_MASK_RCDO_FILE" Name="pynq_test_pattern_top_pld_mask.rcdo"/>
+  <File Type="PL_UNMASK_MARKER_RCDO_FILE" Name="pynq_test_pattern_top_pld_unmask_markers.rcdo"/>
+  <File Type="PL_UNMASK_RCDO_FILE" Name="pynq_test_pattern_top_pld_unmask.rcdo"/>
+  <File Type="NOC_TRAFFIC_SPEC_FILE" Name="pynq_test_pattern_top.nts"/>
+  <File Type="NOC_SOLUTION_FILE" Name="pynq_test_pattern_top.ncr"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PPRDIR/../../rtl/include/dvi_pkg.svh">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../rtl/dvi/delay.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../rtl/dvi/ds_buf.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../rtl/dvi/dvi_sync.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../rtl/dvi/dvi_top.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../rtl/dvi/serializer.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../rtl/dvi/tmds_encoder.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../rtl/pynq_test_pattern_top.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="pynq_test_pattern_top"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1" RelGenDir="$PGENDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <File Path="$PPRDIR/../../constraints/pynq_z2.xdc">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1" RelGenDir="$PGENDIR/utils_1">
+    <Filter Type="Utils"/>
+    <File Path="$PSRCDIR/utils_1/imports/synth_1/pynq_test_pattern_top.dcp">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedInSteps" Val="synth_1"/>
+        <Attr Name="AutoDcp" Val="1"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025"/>
+    <Step Id="init_design"/>
+    <Step Id="opt_design"/>
+    <Step Id="power_opt_design"/>
+    <Step Id="place_design"/>
+    <Step Id="post_place_power_opt_design"/>
+    <Step Id="phys_opt_design"/>
+    <Step Id="route_design"/>
+    <Step Id="post_route_phys_opt_design"/>
+    <Step Id="write_bitstream"/>
+    <Step Id="write_device_image"/>
+  </Strategy>
+</GenRun>
