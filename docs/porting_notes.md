@@ -3,7 +3,8 @@
 This document details the decisions made while porting the `hardware_raycast` project to the PYNQ-Z2 board.
 
 ## Clocking
-- **Decision:** Used `MMCME2_ADV` to multiply the 125 MHz reference clock up to 1000 MHz, then divided it down to 250 MHz (Serial TMDS Clock) and 25 MHz (Pixel Clock).
+- **Decision:** Used `MMCME2_ADV` to multiply the 125 MHz reference clock up to 1000 MHz, then divided it down to 125 MHz (Serial TMDS Clock) and 25 MHz (Pixel Clock).
+  *(Note: An earlier version of this document incorrectly specified 250 MHz for the serial clock. This was a bug; the OSERDESE2 in DDR mode with DATA_WIDTH=10 requires a 5x clock ratio (125 MHz), not 10x).*
 - **Reasoning:** 640x480 standard VGA timing uses a 25.175 MHz pixel clock. Synthesizing exactly 25.175 MHz from 125 MHz requires complex fractional PLL settings which can introduce jitter and limit performance. A 25.0 MHz pixel clock results in a ~59.5 Hz refresh rate, which is within the tolerance of virtually all modern HDMI/DVI monitors.
 - **Alternatives Considered:** Fractional multipliers (`CLKFBOUT_MULT_F = 37.8`) were considered but `OSERDESE2` high-speed clocks are better generated with integer divides where possible, and 25.0 MHz is a safe and reliable approximation.
 
@@ -14,8 +15,8 @@ This document details the decisions made while porting the `hardware_raycast` pr
 
 ## HDMI Output Pins & HPD
 - **Decision:** Replaced the Gowin `TLVDS_OBUF` with Xilinx `OBUFDS` for the differential TMDS data and clock signals.
-- **Decision:** Explicitly tied the HDMI HPD (Hot Plug Detect) pin (R19) to `1'b1`.
-- **Reasoning:** Unlike simpler FPGA boards that pull HPD high with a physical resistor, the PYNQ-Z2 routes the HPD signal directly to the FPGA PL. If this pin is left floating or driven low, the connected monitor may assume no source is connected and remain in sleep mode, ignoring valid TMDS data.
+- **Decision:** Changed the HDMI HPD (Hot Plug Detect) pin (R19) to be an input only, without driving it.
+- **Reasoning:** As stated in the TUL PYNQ-Z2 Reference Manual v1.1, Table 7, the HPD pin on the HDMI OUT connector is an input to the FPGA (driven by the monitor). An earlier version of this document mistakenly stated we should drive this pin to 1'b1, which caused a "driven by constant" warning and violated the board's electrical specification.
 
 ## Buttons and Switches
 - **Decision:** Mapped the 4 buttons and 2 switches on the PYNQ-Z2 to the `keys` inputs, and omitted the active-low inversion.
