@@ -10,11 +10,10 @@ module pynq_z2_top (
     output var logic [2:0] hdmi_out_data_n,
     output var logic       hdmi_out_clk_p,
     output var logic       hdmi_out_clk_n,
-    output var logic [0:0] hdmi_out_hpd
+    input  var logic [0:0] hdmi_out_hpd
 );
 
-    // HPD logic: just tie high to tell the monitor a source is connected
-    assign hdmi_out_hpd[0] = 1'b1;
+    // HPD is asserted by the monitor toward the source; this design only reads it and doesn't act on it yet.
 
     // Map buttons and switches for future use, not used in test pattern
     logic [5:0] keys;
@@ -23,7 +22,7 @@ module pynq_z2_top (
     // Clock Generation
     logic clkfbout, clkfbout_buf;
     logic pll_locked;
-    logic clk_250_unbuf, clk_25_unbuf;
+    logic clk_125_unbuf, clk_25_unbuf;
     logic serial_clk, pixel_clk;
     
     MMCME2_ADV #(
@@ -35,7 +34,7 @@ module pynq_z2_top (
         .CLKFBOUT_MULT_F      (8.000), // 125 * 8 = 1000 MHz
         .CLKFBOUT_PHASE       (0.000),
         .CLKFBOUT_USE_FINE_PS ("FALSE"),
-        .CLKOUT0_DIVIDE_F     (4.000), // 1000 / 4 = 250 MHz
+        .CLKOUT0_DIVIDE_F     (8.000), // 1000 / 8 = 125 MHz
         .CLKOUT0_PHASE        (0.000),
         .CLKOUT0_DUTY_CYCLE   (0.500),
         .CLKOUT0_USE_FINE_PS  ("FALSE"),
@@ -47,7 +46,7 @@ module pynq_z2_top (
     ) mmcme2_inst (
         .CLKFBOUT            (clkfbout),
         .CLKFBOUTB           (),
-        .CLKOUT0             (clk_250_unbuf),
+        .CLKOUT0             (clk_125_unbuf),
         .CLKOUT0B            (),
         .CLKOUT1             (clk_25_unbuf),
         .CLKOUT1B            (),
@@ -81,7 +80,7 @@ module pynq_z2_top (
     );
 
     BUFG clkf_buf (.I(clkfbout), .O(clkfbout_buf));
-    BUFG clk250_buf (.I(clk_250_unbuf), .O(serial_clk));
+    BUFG clk125_buf (.I(clk_125_unbuf), .O(serial_clk));
     BUFG clk25_buf (.I(clk_25_unbuf), .O(pixel_clk));
 
     // Reset Logic
