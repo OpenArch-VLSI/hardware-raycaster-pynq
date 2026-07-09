@@ -2,9 +2,7 @@
 set_property -dict { PACKAGE_PIN H16 IOSTANDARD LVCMOS33 } [get_ports { sysclk }]
 create_clock -add -name sys_clk_pin -period 8.00 -waveform {0 4} [get_ports { sysclk }]
 
-## Switches
-set_property -dict { PACKAGE_PIN M20 IOSTANDARD LVCMOS33 } [get_ports { sw_i[0] }]
-set_property -dict { PACKAGE_PIN M19 IOSTANDARD LVCMOS33 } [get_ports { sw_i[1] }]
+
 
 ## Buttons
 set_property -dict { PACKAGE_PIN D19 IOSTANDARD LVCMOS33 } [get_ports { btn_i[0] }]
