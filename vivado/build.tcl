@@ -27,7 +27,10 @@ add_files ../rtl/newton_inv.sv
 add_files ../rtl/column_calc.sv
 add_files ../rtl/position.sv
 add_files ../rtl/rotation.sv
-
+add_files ../rtl/memfiles/map.mem
+add_files ../rtl/memfiles/textures.mem
+add_files ../rtl/memfiles/recode_lut.mem
+set_property include_dirs {../rtl/memfiles} [current_fileset]
 # Add constraints
 add_files -fileset constrs_1 ../constraints/pynq-z2.xdc
 
