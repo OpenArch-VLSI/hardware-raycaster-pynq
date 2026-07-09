@@ -310,7 +310,7 @@ always_comb begin
         if (inv_done)
             delta_dist_x_next = (inv_num_in < FIXP_INV_MIN) ?
                                  FIXP_MAX_DIST :
-                                `FIXP_CAST(inv_num_out, ext_pos_fixp_t);
+                                ext_pos_fixp_t'(inv_num_out >> 2);
     end
 
     if (main_state == ST_CALC_DELTA_DIST_Y) begin
@@ -319,7 +319,7 @@ always_comb begin
         if (inv_done)
             delta_dist_y_next = (inv_num_in < FIXP_INV_MIN) ?
                                   FIXP_MAX_DIST :
-                                 `FIXP_CAST(inv_num_out, ext_pos_fixp_t);
+                                 ext_pos_fixp_t'(inv_num_out >> 2);
     end
 
     if (main_state == ST_INV_WALL_DIST) begin
@@ -387,12 +387,12 @@ end
 always_ff @(posedge clk) begin
     if (main_state == ST_CALC_SIDE_DIST) begin
         init_side_dist_x <= `FIXP_MULT(
-            `FIXP_CAST(side_dist_x_ff, ext_pos_fixp_t),
+            ext_pos_fixp_t'(side_dist_x_ff),
             delta_dist_x_ff
         );
 
         init_side_dist_y <= `FIXP_MULT(
-            `FIXP_CAST(side_dist_y_ff, ext_pos_fixp_t),
+            ext_pos_fixp_t'(side_dist_y_ff),
             delta_dist_y_ff
         );
     end
