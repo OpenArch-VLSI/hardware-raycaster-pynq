@@ -1,10 +1,10 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
-| Date         : Wed Jul  8 15:48:42 2026
+| Date         : Thu Jul  9 20:10:56 2026
 | Host         : Kaustubh running 64-bit major release  (build 9200)
 | Command      : report_timing_summary -file ../docs/timing_summary.rpt
-| Design       : pynq_z2_top
+| Design       : raycaster_pynq_z2_top
 | Device       : 7z020-clg400
 | Speed File   : -1  PRODUCTION 1.12 2019-11-22
 | Design State : Routed
@@ -41,9 +41,10 @@ Timing Summary Report
 | ------------------
 ------------------------------------------------------------------------------------------------
 
-Rule       Severity  Description                    Violations  
----------  --------  -----------------------------  ----------  
-TIMING-18  Warning   Missing input or output delay  6           
+Rule       Severity  Description                                 Violations  
+---------  --------  ------------------------------------------  ----------  
+SYNTH-6    Warning   Timing of a RAM block might be sub-optimal  2           
+TIMING-18  Warning   Missing input or output delay               6           
 
 Note: This report is based on the most recent report_methodology run and may not be up-to-date. Run report_methodology on the current design for the latest report.
 
@@ -57,7 +58,7 @@ Table of Contents
 2. checking constant_clock (0)
 3. checking pulse_width_clock (0)
 4. checking unconstrained_internal_endpoints (0)
-5. checking no_input_delay (0)
+5. checking no_input_delay (4)
 6. checking no_output_delay (3)
 7. checking multiple_clock (0)
 8. checking generated_clocks (0)
@@ -88,9 +89,9 @@ Table of Contents
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 
 
-5. checking no_input_delay (0)
+5. checking no_input_delay (4)
 ------------------------------
- There are 0 input ports with no input delay specified.
+ There are 4 input ports with no input delay specified. (HIGH)
 
  There are 0 input ports with no input delay but user has a false path constraint.
 
@@ -142,7 +143,7 @@ Table of Contents
 
     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-     33.056        0.000                      0                  191        0.119        0.000                      0                  191        2.000        0.000                       0                   100  
+     29.275        0.000                      0                 8810        0.080        0.000                      0                 8810        2.000        0.000                       0                  1662  
 
 
 All user specified timing constraints are met.
@@ -170,7 +171,7 @@ Clock                WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endp
 -----                -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
 sys_clk_pin                                                                                                                                                        2.000        0.000                       0                     1  
   clk_125_unbuf                                                                                                                                                    5.845        0.000                       0                     8  
-  clk_25_unbuf        33.056        0.000                      0                  191        0.119        0.000                      0                  191       18.750        0.000                       0                    88  
+  clk_25_unbuf        29.275        0.000                      0                 8810        0.080        0.000                      0                 8810       18.750        0.000                       0                  1650  
   clkfbout                                                                                                                                                         5.845        0.000                       0                     3  
 
 
@@ -250,28 +251,28 @@ Max Period  n/a     MMCME2_ADV/CLKOUT0  n/a            213.360       8.000      
 From Clock:  clk_25_unbuf
   To Clock:  clk_25_unbuf
 
-Setup :            0  Failing Endpoints,  Worst Slack       33.056ns,  Total Violation        0.000ns
-Hold  :            0  Failing Endpoints,  Worst Slack        0.119ns,  Total Violation        0.000ns
+Setup :            0  Failing Endpoints,  Worst Slack       29.275ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.080ns,  Total Violation        0.000ns
 PW    :            0  Failing Endpoints,  Worst Slack       18.750ns,  Total Violation        0.000ns
 ---------------------------------------------------------------------------------------------------
 
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             33.056ns  (required time - arrival time)
-  Source:                 power_on_rst_cnt_reg[0]/C
+Slack (MET) :             29.275ns  (required time - arrival time)
+  Source:                 raycast_top_inst/controls/rotation/dir_x_o_reg[-3]/C
                             (rising edge-triggered cell FDRE clocked by clk_25_unbuf  {rise@0.000ns fall@20.000ns period=40.000ns})
-  Destination:            dvi_top_inst/blue_encoder/cnt_reg[4]/R
-                            (rising edge-triggered cell FDRE clocked by clk_25_unbuf  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Destination:            raycast_top_inst/controls/rotation/comp_new1/A[16]
+                            (rising edge-triggered cell DSP48E1 clocked by clk_25_unbuf  {rise@0.000ns fall@20.000ns period=40.000ns})
   Path Group:             clk_25_unbuf
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            40.000ns  (clk_25_unbuf rise@40.000ns - clk_25_unbuf rise@0.000ns)
-  Data Path Delay:        6.155ns  (logic 1.148ns (18.652%)  route 5.007ns (81.348%))
-  Logic Levels:           3  (LUT2=1 LUT4=1 LUT6=1)
-  Clock Path Skew:        -0.068ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    -1.324ns = ( 38.676 - 40.000 ) 
-    Source Clock Delay      (SCD):    -0.671ns
-    Clock Pessimism Removal (CPR):    0.584ns
+  Data Path Delay:        10.124ns  (logic 5.956ns (58.830%)  route 4.168ns (41.170%))
+  Logic Levels:           7  (CARRY4=3 DSP48E1=1 LUT1=1 LUT5=1 MUXF7=1)
+  Clock Path Skew:        0.024ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.479ns = ( 38.521 - 40.000 ) 
+    Source Clock Delay      (SCD):    -0.935ns
+    Clock Pessimism Removal (CPR):    0.567ns
   Clock Uncertainty:      0.088ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
     Discrete Jitter          (DJ):    0.161ns
@@ -289,18 +290,30 @@ Slack (MET) :             33.056ns  (required time - arrival time)
                                                      -7.759    -5.023 r  mmcme2_inst/CLKOUT1
                          net (fo=1, routed)           2.206    -2.817    clk_25_unbuf
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101    -2.716 r  clk25_buf/O
-                         net (fo=87, routed)          2.045    -0.671    pixel_clk
-    SLICE_X112Y119       FDRE                                         r  power_on_rst_cnt_reg[0]/C
+                         net (fo=1660, routed)        1.781    -0.935    raycast_top_inst/controls/rotation/px_clk
+    SLICE_X94Y88         FDRE                                         r  raycast_top_inst/controls/rotation/dir_x_o_reg[-3]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X112Y119       FDRE (Prop_fdre_C_Q)         0.518    -0.153 r  power_on_rst_cnt_reg[0]/Q
-                         net (fo=7, routed)           0.842     0.689    dvi_top_inst/i_dvi_sync/Q[0]
-    SLICE_X111Y119       LUT6 (Prop_lut6_I1_O)        0.124     0.813 r  dvi_top_inst/i_dvi_sync/SerializerMaster_i_2/O
-                         net (fo=4, routed)           0.591     1.404    dvi_top_inst/i_dvi_sync/power_on_rst_cnt_reg[2]
-    SLICE_X112Y119       LUT4 (Prop_lut4_I1_O)        0.153     1.557 r  dvi_top_inst/i_dvi_sync/SerializerMaster_i_1/O
-                         net (fo=34, routed)          2.194     3.751    dvi_top_inst/delay/rst
-    SLICE_X112Y126       LUT2 (Prop_lut2_I0_O)        0.353     4.104 r  dvi_top_inst/delay/cnt[7]_i_1/O
-                         net (fo=21, routed)          1.380     5.483    dvi_top_inst/blue_encoder/SR[0]
-    SLICE_X109Y128       FDRE                                         r  dvi_top_inst/blue_encoder/cnt_reg[4]/R
+    SLICE_X94Y88         FDRE (Prop_fdre_C_Q)         0.518    -0.417 r  raycast_top_inst/controls/rotation/dir_x_o_reg[-3]/Q
+                         net (fo=6, routed)           1.517     1.099    raycast_top_inst/controls/rotation/Q[7]
+    DSP48_X3Y32          DSP48E1 (Prop_dsp48e1_A[7]_P[10])
+                                                      3.841     4.940 f  raycast_top_inst/controls/rotation/comp_new2/P[10]
+                         net (fo=2, routed)           0.642     5.582    raycast_top_inst/controls/rotation/comp_new2_n_95
+    SLICE_X94Y82         LUT1 (Prop_lut1_I0_O)        0.124     5.706 r  raycast_top_inst/controls/rotation/dir_y_o[-6]_i_5/O
+                         net (fo=1, routed)           0.540     6.247    raycast_top_inst/controls/rotation/dir_y_o[-6]_i_5_n_0
+    SLICE_X95Y83         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.580     6.827 r  raycast_top_inst/controls/rotation/dir_y_o_reg[-6]_i_4/CO[3]
+                         net (fo=1, routed)           0.000     6.827    raycast_top_inst/controls/rotation/dir_y_o_reg[-6]_i_4_n_0
+    SLICE_X95Y84         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114     6.941 r  raycast_top_inst/controls/rotation/dir_y_o_reg[-2]_i_4/CO[3]
+                         net (fo=1, routed)           0.000     6.941    raycast_top_inst/controls/rotation/dir_y_o_reg[-2]_i_4_n_0
+    SLICE_X95Y85         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239     7.180 r  raycast_top_inst/controls/rotation/dir_y_o_reg[1]_i_5/O[2]
+                         net (fo=1, routed)           0.436     7.616    raycast_top_inst/controls/rotation/dir_y_o_reg[1]_i_5_n_5
+    SLICE_X95Y86         LUT5 (Prop_lut5_I3_O)        0.302     7.918 r  raycast_top_inst/controls/rotation/dir_y_o[1]_i_3/O
+                         net (fo=1, routed)           0.000     7.918    raycast_top_inst/controls/rotation/dir_y_o[1]_i_3_n_0
+    SLICE_X95Y86         MUXF7 (Prop_muxf7_I0_O)      0.238     8.156 r  raycast_top_inst/controls/rotation/dir_y_o_reg[1]_i_2/O
+                         net (fo=23, routed)          1.033     9.189    raycast_top_inst/controls/rotation/comp_new[1]
+    DSP48_X3Y34          DSP48E1                                      r  raycast_top_inst/controls/rotation/comp_new1/A[16]
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_25_unbuf rise edge)
@@ -313,16 +326,17 @@ Slack (MET) :             33.056ns  (required time - arrival time)
                                                      -7.814    34.728 r  mmcme2_inst/CLKOUT1
                          net (fo=1, routed)           2.012    36.740    clk_25_unbuf
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    36.831 r  clk25_buf/O
-                         net (fo=87, routed)          1.845    38.676    dvi_top_inst/blue_encoder/pixel_clk
-    SLICE_X109Y128       FDRE                                         r  dvi_top_inst/blue_encoder/cnt_reg[4]/C
-                         clock pessimism              0.584    39.261    
-                         clock uncertainty           -0.088    39.173    
-    SLICE_X109Y128       FDRE (Setup_fdre_C_R)       -0.633    38.540    dvi_top_inst/blue_encoder/cnt_reg[4]
+                         net (fo=1660, routed)        1.690    38.521    raycast_top_inst/controls/rotation/px_clk
+    DSP48_X3Y34          DSP48E1                                      r  raycast_top_inst/controls/rotation/comp_new1/CLK
+                         clock pessimism              0.567    39.088    
+                         clock uncertainty           -0.088    39.000    
+    DSP48_X3Y34          DSP48E1 (Setup_dsp48e1_CLK_A[16])
+                                                     -0.536    38.464    raycast_top_inst/controls/rotation/comp_new1
   -------------------------------------------------------------------
-                         required time                         38.540    
-                         arrival time                          -5.483    
+                         required time                         38.464    
+                         arrival time                          -9.189    
   -------------------------------------------------------------------
-                         slack                                 33.056    
+                         slack                                 29.275    
 
 
 
@@ -330,20 +344,20 @@ Slack (MET) :             33.056ns  (required time - arrival time)
 
 Min Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             0.119ns  (arrival time - required time)
-  Source:                 dvi_top_inst/delay/ring_buf_gen.ptr_reg[1]/C
+Slack (MET) :             0.080ns  (arrival time - required time)
+  Source:                 raycast_top_inst/render/calc_px_x_reg[3]/C
                             (rising edge-triggered cell FDRE clocked by clk_25_unbuf  {rise@0.000ns fall@20.000ns period=40.000ns})
-  Destination:            dvi_top_inst/delay/ring_buf_gen.mem_reg_0_7_0_0/SP/ADR1
-                            (rising edge-triggered cell RAMS32 clocked by clk_25_unbuf  {rise@0.000ns fall@20.000ns period=40.000ns})
+  Destination:            raycast_top_inst/render/frame_buffer_reg_384_447_27_29/RAMA/WADR3
+                            (rising edge-triggered cell RAMD64E clocked by clk_25_unbuf  {rise@0.000ns fall@20.000ns period=40.000ns})
   Path Group:             clk_25_unbuf
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (clk_25_unbuf rise@0.000ns - clk_25_unbuf rise@0.000ns)
-  Data Path Delay:        0.441ns  (logic 0.141ns (31.950%)  route 0.300ns (68.050%))
+  Data Path Delay:        0.355ns  (logic 0.141ns (39.731%)  route 0.214ns (60.269%))
   Logic Levels:           0  
-  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    -0.765ns
-    Source Clock Delay      (SCD):    -0.527ns
-    Clock Pessimism Removal (CPR):    -0.251ns
+  Clock Path Skew:        0.035ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.787ns
+    Source Clock Delay      (SCD):    -0.551ns
+    Clock Pessimism Removal (CPR):    -0.271ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -357,12 +371,12 @@ Slack (MET) :             0.119ns  (arrival time - required time)
                                                      -2.613    -1.954 r  mmcme2_inst/CLKOUT1
                          net (fo=1, routed)           0.696    -1.257    clk_25_unbuf
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026    -1.231 r  clk25_buf/O
-                         net (fo=87, routed)          0.704    -0.527    dvi_top_inst/delay/pixel_clk
-    SLICE_X109Y125       FDRE                                         r  dvi_top_inst/delay/ring_buf_gen.ptr_reg[1]/C
+                         net (fo=1660, routed)        0.680    -0.551    raycast_top_inst/render/px_clk
+    SLICE_X103Y121       FDRE                                         r  raycast_top_inst/render/calc_px_x_reg[3]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X109Y125       FDRE (Prop_fdre_C_Q)         0.141    -0.386 r  dvi_top_inst/delay/ring_buf_gen.ptr_reg[1]/Q
-                         net (fo=5, routed)           0.300    -0.086    dvi_top_inst/delay/ring_buf_gen.mem_reg_0_7_0_0/A1
-    SLICE_X108Y125       RAMS32                                       r  dvi_top_inst/delay/ring_buf_gen.mem_reg_0_7_0_0/SP/ADR1
+    SLICE_X103Y121       FDRE (Prop_fdre_C_Q)         0.141    -0.410 r  raycast_top_inst/render/calc_px_x_reg[3]/Q
+                         net (fo=508, routed)         0.214    -0.196    raycast_top_inst/render/frame_buffer_reg_384_447_27_29/ADDRD3
+    SLICE_X104Y121       RAMD64E                                      r  raycast_top_inst/render/frame_buffer_reg_384_447_27_29/RAMA/WADR3
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_25_unbuf rise edge)
@@ -375,16 +389,16 @@ Slack (MET) :             0.119ns  (arrival time - required time)
                                                      -3.407    -2.521 r  mmcme2_inst/CLKOUT1
                          net (fo=1, routed)           0.752    -1.769    clk_25_unbuf
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029    -1.740 r  clk25_buf/O
-                         net (fo=87, routed)          0.975    -0.765    dvi_top_inst/delay/ring_buf_gen.mem_reg_0_7_0_0/WCLK
-    SLICE_X108Y125       RAMS32                                       r  dvi_top_inst/delay/ring_buf_gen.mem_reg_0_7_0_0/SP/CLK
-                         clock pessimism              0.251    -0.514    
-    SLICE_X108Y125       RAMS32 (Hold_rams32_CLK_ADR1)
-                                                      0.309    -0.205    dvi_top_inst/delay/ring_buf_gen.mem_reg_0_7_0_0/SP
+                         net (fo=1660, routed)        0.953    -0.787    raycast_top_inst/render/frame_buffer_reg_384_447_27_29/WCLK
+    SLICE_X104Y121       RAMD64E                                      r  raycast_top_inst/render/frame_buffer_reg_384_447_27_29/RAMA/CLK
+                         clock pessimism              0.271    -0.516    
+    SLICE_X104Y121       RAMD64E (Hold_ramd64e_CLK_WADR3)
+                                                      0.240    -0.276    raycast_top_inst/render/frame_buffer_reg_384_447_27_29/RAMA
   -------------------------------------------------------------------
-                         required time                          0.205    
-                         arrival time                          -0.086    
+                         required time                          0.276    
+                         arrival time                          -0.196    
   -------------------------------------------------------------------
-                         slack                                  0.119    
+                         slack                                  0.080    
 
 
 
@@ -398,10 +412,10 @@ Period(ns):         40.000
 Sources:            { mmcme2_inst/CLKOUT1 }
 
 Check Type        Corner  Lib Pin             Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location         Pin
-Min Period        n/a     BUFG/I              n/a            2.155         40.000      37.845     BUFGCTRL_X0Y16   clk25_buf/I
+Min Period        n/a     DSP48E1/CLK         n/a            3.884         40.000      36.116     DSP48_X2Y38      raycast_top_inst/render/column_calc/proj_frac_ff1/CLK
 Max Period        n/a     MMCME2_ADV/CLKOUT1  n/a            213.360       40.000      173.360    MMCME2_ADV_X1Y2  mmcme2_inst/CLKOUT1
-Low Pulse Width   Slow    RAMS32/CLK          n/a            1.250         20.000      18.750     SLICE_X108Y125   dvi_top_inst/delay/ring_buf_gen.mem_reg_0_7_0_0/SP/CLK
-High Pulse Width  Slow    RAMS32/CLK          n/a            1.250         20.000      18.750     SLICE_X108Y125   dvi_top_inst/delay/ring_buf_gen.mem_reg_0_7_0_0/SP/CLK
+Low Pulse Width   Slow    RAMS32/CLK          n/a            1.250         20.000      18.750     SLICE_X112Y117   raycast_top_inst/dvi_top/delay/ring_buf_gen.mem_reg_0_7_0_0/SP/CLK
+High Pulse Width  Slow    RAMS32/CLK          n/a            1.250         20.000      18.750     SLICE_X112Y117   raycast_top_inst/dvi_top/delay/ring_buf_gen.mem_reg_0_7_0_0/SP/CLK
 
 
 

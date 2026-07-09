@@ -80,6 +80,7 @@ localparam ext_pos_fixp_t  FIXP_MAX_DIST = `INT_TO_FIXP(MAX_DIST, ext_pos_fixp_t
 localparam inv_fixp_t      FIXP_INV_MIN  = `REAL_TO_FIXP(1.0 / MAX_DIST, inv_fixp_t);
 localparam ray_fixp_t      RAY_STEP      = `REAL_TO_FIXP(2.0 / real'(FRAME_WIDTH), ray_fixp_t);
 localparam ext_step_fixp_t TEX_SCALE_EXT = `FIXP_CAST(TEX_SCALE, ext_step_fixp_t);
+localparam inv_dist_fixp_t FRAME_HEIGHT_FIXP = inv_dist_fixp_t'(FRAME_HEIGHT);
 
 // ----------------------------------------------------------------------------
 // Elaboration checks
@@ -175,6 +176,9 @@ main_state_t           main_state;
 main_state_t           main_next_state;
 tex_state_t            tex_state;
 tex_state_t            tex_next_state;
+
+ext_pos_fixp_t         side_x_ext;
+ext_pos_fixp_t         side_y_ext;
 
 // ----------------------------------------------------------------------------
 // FSMs
@@ -384,17 +388,15 @@ end
 // Scale perpendicular distance to ray distance
 // ----------------------------------------------------------------------------
 
+always_comb begin
+    side_x_ext = ext_pos_fixp_t'(side_dist_x_ff);
+    side_y_ext = ext_pos_fixp_t'(side_dist_y_ff);
+end
+
 always_ff @(posedge clk) begin
     if (main_state == ST_CALC_SIDE_DIST) begin
-        init_side_dist_x <= `FIXP_MULT(
-            ext_pos_fixp_t'(side_dist_x_ff),
-            delta_dist_x_ff
-        );
-
-        init_side_dist_y <= `FIXP_MULT(
-            ext_pos_fixp_t'(side_dist_y_ff),
-            delta_dist_y_ff
-        );
+        init_side_dist_x <= `FIXP_MULT(side_x_ext, delta_dist_x_ff);
+        init_side_dist_y <= `FIXP_MULT(side_y_ext, delta_dist_y_ff);
     end
 end
 
@@ -540,7 +542,7 @@ always_ff @(posedge clk)
 always_ff @(posedge clk)
     if (main_state == ST_CALC_LINE_HEIGHT)
         if (wall_dist_ff[POS_W_INT-1:0] != '0)
-            tex_height_o <= W_V_RES'(`FIXP_MULT(inv_dist_fixp_t'(FRAME_HEIGHT), inv_wall_dist_ff));
+            tex_height_o <= W_V_RES'(`FIXP_MULT(FRAME_HEIGHT_FIXP, inv_wall_dist_ff));
         else
             tex_height_o <= FRAME_HEIGHT;
 
