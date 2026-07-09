@@ -6,6 +6,11 @@ create_project $proj_name $proj_dir -part $part_num -force
 
 # Add RTL sources
 add_files ../rtl/include/dvi_pkg.svh
+set_property file_type SystemVerilog [get_files ../rtl/include/dvi_pkg.svh]
+add_files ../rtl/include/fixp_pkg.svh
+set_property file_type SystemVerilog [get_files ../rtl/include/fixp_pkg.svh]
+add_files ../rtl/include/tex_pkg.svh
+set_property file_type SystemVerilog [get_files ../rtl/include/tex_pkg.svh]
 add_files ../rtl/dvi/delay.sv
 add_files ../rtl/dvi/dvi_sync.sv
 add_files ../rtl/dvi/tmds_encoder.sv
@@ -13,12 +18,21 @@ add_files ../rtl/dvi/serializer.sv
 add_files ../rtl/dvi/ds_buf.sv
 add_files ../rtl/dvi/dvi_top.sv
 add_files ../rtl/pynq_z2_top.sv
+add_files ../rtl/raycaster_pynq_z2_top.sv
+add_files ../rtl/raycast_top.sv
+add_files ../rtl/controls.sv
+add_files ../rtl/render.sv
+add_files ../rtl/dda.sv
+add_files ../rtl/newton_inv.sv
+add_files ../rtl/column_calc.sv
+add_files ../rtl/position.sv
+add_files ../rtl/rotation.sv
 
 # Add constraints
 add_files -fileset constrs_1 ../constraints/pynq-z2.xdc
 
 # Set top module
-set_property top pynq_z2_top [current_fileset]
+set_property top raycaster_pynq_z2_top [current_fileset]
 update_compile_order -fileset sources_1
 
 # Run Synthesis
