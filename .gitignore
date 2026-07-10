@@ -30,3 +30,5 @@
 # OS generated
 .DS_Store
 Thumbs.db
+
+docs/personal_bringup_guide.md
